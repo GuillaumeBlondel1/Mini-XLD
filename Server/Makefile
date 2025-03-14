@@ -12,6 +12,8 @@ SRC	:=	src/Main.cpp										\
 		src/file/Ip.cpp										\
 		src/file/Port.cpp									\
 		src/file/Path.cpp									\
+		src/file/Users.cpp									\
+		src/account/Account.cpp								\
 
 OBJ_DIR	:=	build
 
@@ -39,6 +41,10 @@ ${OBJ_DIR}/%.o:	src/usage/%.cpp
 	@(g++ ${CFLAGS} -c $< -o $@)
 
 ${OBJ_DIR}/%.o:	src/file/%.cpp
+	@echo "$<..."
+	@(g++ ${CFLAGS} -c $< -o $@)
+
+${OBJ_DIR}/%.o:	src/account/%.cpp
 	@echo "$<..."
 	@(g++ ${CFLAGS} -c $< -o $@)
 

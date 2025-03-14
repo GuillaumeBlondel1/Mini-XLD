@@ -51,6 +51,7 @@ void File::ConfigFile::getConfig()
         this->setIp(_jsonConfig[IP_DATA]);
         this->setPort(_jsonConfig[PORT_DATA]);
         this->setPath(_jsonConfig[PATH_DATA]);
+        this->setUsers(_jsonConfig[USERS_DATA]);
     } catch (nlohmann::detail::type_error &e) {
         std::cerr << e.what() << std::endl;
         throw File::ConfigFileException(File::error.find(DATA_CONFIG)->second);

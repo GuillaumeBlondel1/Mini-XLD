@@ -1,11 +1,17 @@
 #ifndef __CONFIGDATA__
     #define __CONFIGDATA__
 
+#include "../account/Account.hpp"
+
 #include <string>
+#include <vector>
+
+#include <nlohmann/json.hpp>
 
 #define IP_DATA "serverIp"
 #define PORT_DATA "serverPort"
 #define PATH_DATA "serverPath"
+#define USERS_DATA "users"
 
 namespace File
 {
@@ -45,7 +51,20 @@ namespace File
             std::string _path;
     };
 
-    class ConfigData : public Ip, public Port, public Path {};
+    class Users {
+        public:
+            Users() = default;
+            Users(const nlohmann::json &usersList);
+            ~Users() = default;
+            void setUsers(const nlohmann::json &usersList);
+            const std::vector<Account> &getUsers() const;
+            void addUser(const Account &account);
+            bool userExisting(const Account &account) const;
+        private:
+            std::vector<Account> _registerAccounts;
+    };
+
+    class ConfigData : public Ip, public Port, public Path, public Users {};
 }
 
 #endif
